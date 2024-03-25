@@ -7,6 +7,9 @@ module.exports = {
     ecmaVersion: 2021,
     sourceType: 'module',
     requireConfigFile: false,
+    babelOptions: {
+      presets: ['@babel/preset-react'],
+    },
   },
   plugins: ['react'],
   extends: [
