@@ -6,6 +6,10 @@ module.exports = {
     },
     ecmaVersion: 13,
     sourceType: 'module',
+    requireConfigFile: false,
+  },
+  babelOptions: {
+    presets: '@babel/preset-react',
   },
   plugins: ['react'],
   extends: [
