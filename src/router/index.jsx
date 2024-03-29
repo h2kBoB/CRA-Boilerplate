@@ -1,13 +1,16 @@
-import { BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import publicRoutes from './PublicRoutes';
+import Layout from '../components/Layout';
 
-function Router() {
+import { createPrivateRoutes, createPublicRoutes } from './pages';
+
+export default function Router() {
   return (
     <BrowserRouter>
-      <Routes>{publicRoutes()}</Routes>
+      <Routes>
+        <Route> {createPublicRoutes()}</Route>
+        <Route element={<Layout />}>{createPrivateRoutes()}</Route>
+      </Routes>
     </BrowserRouter>
   );
 }
-
-export default Router;
