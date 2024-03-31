@@ -103,7 +103,7 @@ function reducer(state, action) {
   }
 }
 
-export default function Sidebar({ width }) {
+const Sidebar = ({ width }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
   const location = useLocation();
@@ -190,13 +190,13 @@ export default function Sidebar({ width }) {
                       selected={
                         state.selectedDropdownItem === dropdownItem.name
                       }
-                      dropdown
+                      data-dropdown="true"
                     >
                       <ListItemText
                         selected={
                           state.selectedDropdownItem === dropdownItem.name
                         }
-                        dropdown
+                        data-dropdown="true"
                       >
                         {dropdownItem.name}
                       </ListItemText>
@@ -210,4 +210,6 @@ export default function Sidebar({ width }) {
       </List>
     </Drawer>
   );
-}
+};
+
+export default Sidebar;

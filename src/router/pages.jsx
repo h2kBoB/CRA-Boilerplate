@@ -10,6 +10,7 @@ import PostManagement from '../pages/PostManagement';
 import SystemManagement from '../pages/SystemManagement';
 import UserManagement from '../pages/UserManagement';
 
+// TODO: 추가 페이지 라우터 설정 여기서 해주세요!
 const privateRoutes = [
   { path: '/dashboard', element: <DashBoard /> },
   { path: '/accountmanagement', element: <AccountManagement /> },
@@ -28,18 +29,18 @@ const publicRoutes = [
   },
 ];
 
-function ProtectRoute() {
+const ProtectRoute = () => {
   const isLoggedIn = !!localStorage.getItem('isLoggedIn');
   return isLoggedIn ? <Outlet /> : <Navigate to="/" />;
-}
+};
 
-export function createPublicRoutes() {
+export const createPublicRoutes = () => {
   return publicRoutes.map((route) => {
     return <Route key={route.path} path={route.path} element={route.element} />;
   });
-}
+};
 
-export function createPrivateRoutes() {
+export const createPrivateRoutes = () => {
   return privateRoutes.map((route) => {
     return (
       <Route key={route.path} element={<ProtectRoute />}>
@@ -47,4 +48,4 @@ export function createPrivateRoutes() {
       </Route>
     );
   });
-}
+};

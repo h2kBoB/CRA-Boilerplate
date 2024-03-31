@@ -4,6 +4,11 @@ import styled from 'styled-components';
 import { FaCrown, FaStar } from 'react-icons/fa';
 
 const BADGE_COLORS = {
+  default: {
+    background: '#FFFFFF', // 기본 배경색
+    text: '#000000', // 기본 텍스트색
+    label: '사용자', // 기본 라벨
+  },
   master: {
     background: '#E9E8FF',
     text: '#645DD1',
@@ -28,7 +33,7 @@ const BADGE_COLORS = {
 
 const Badge = styled.div`
   display: inline-flex;
-  padding: 4px 4px 4px 0px;
+  padding: 6px 8px 6px 8px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: bold;
@@ -42,8 +47,7 @@ const IconWrapper = styled.div`
   align-items: center;
   margin-right: 4px;
 `;
-
-export default function BadgeComponent({ type }) {
+const BadgeComponent = ({ type }) => {
   return (
     <Badge type={type}>
       {type === 'super' && (
@@ -59,7 +63,8 @@ export default function BadgeComponent({ type }) {
       {BADGE_COLORS[type]?.label || ''}
     </Badge>
   );
-}
+};
 
+export default BadgeComponent;
 // 용법
 //  <BadgeComponent type="master" />

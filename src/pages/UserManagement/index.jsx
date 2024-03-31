@@ -1,3 +1,5 @@
-export default function UserManagement() {
+const UserManagement = () => {
   return <div>UserManagement</div>;
-}
+};
+
+export default UserManagement;

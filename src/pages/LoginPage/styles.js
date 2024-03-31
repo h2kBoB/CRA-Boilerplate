@@ -1,6 +1,6 @@
 // src/pages/LoginPage/LoginPage.styles.js
 import styled from 'styled-components';
-import Button from '../../components/common/Button';
+// import Button from '../../components/common/Button';
 
 export const LoginPageWrapper = styled.div`
   display: flex;
@@ -55,13 +55,4 @@ export const InputWrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 12px;
-`;
-
-export const LoginButton = styled(Button)`
-  display: flex;
-  width: 335px;
-  font-family: Pretendard;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 22px;
 `;

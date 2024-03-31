@@ -1,14 +1,12 @@
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable react/prop-types */
 // src/components/InputField/InputField.jsx
 import React from 'react';
 import { Input, InputWrapper, Label, ErrorMessage } from './styles';
 
-export function InputField({
+const InputField = ({
   frameClassName,
   multiline,
   size,
-  state,
+  $state,
   text,
   type,
   value,
@@ -17,14 +15,14 @@ export function InputField({
   onFocus,
   errorMessage,
   placeholder,
-}) {
+}) => {
   return (
     <InputWrapper className={frameClassName}>
       <Label>{text}</Label>
       <Input
         as={multiline ? 'textarea' : 'input'}
         size={size}
-        state={state}
+        $state={$state}
         type={type}
         value={value}
         onChange={onChange}
@@ -35,4 +33,6 @@ export function InputField({
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </InputWrapper>
   );
-}
+};
+
+export default InputField;

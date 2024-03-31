@@ -1,11 +1,11 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-console */
 // src/pages/LoginPage.jsx
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../store/redux/authSlice';
-import { InputField } from '../../components/common/InputField/index.jsx';
+import InputField from '../../components/common/InputField/index.jsx';
+import CustomButton from '../../components/common/Button/index.jsx';
+
 import {
   LoginPageWrapper,
   Frame,
@@ -13,18 +13,38 @@ import {
   FrameWrapper,
   FormWrapper,
   InputWrapper,
-  LoginButton,
 } from './styles.js';
 
 // 더미 유저 정보
-const dummyUser = {
-  username: 'admin@gmail.com',
-  password: 'a1s2d3!@#',
-  name: '김현제',
-  type: 'master',
-};
+// TODO: 더미 부분 나중에 삭제해 주세요!
+const dummyUsers = [
+  {
+    username: 'master@example.com',
+    password: 'master123!',
+    name: '마스터',
+    type: 'master',
+  },
+  {
+    username: 'super@example.com',
+    password: 'super123!',
+    name: '슈퍼관리자',
+    type: 'super',
+  },
+  {
+    username: 'serviceManger@example.com',
+    password: 'sManger123!',
+    name: '서비스관리자',
+    type: 'serviceManger',
+  },
+  {
+    username: 'serviceAdmin@example.com',
+    password: 'sAdmin123!',
+    name: '서비스운영자',
+    type: 'serviceAdmin',
+  },
+];
 
-export default function LoginPage() {
+const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -33,6 +53,26 @@ export default function LoginPage() {
   const [passwordFocused, setPasswordFocused] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const getEmailState = () => {
+    if (emailError) {
+      return 'error';
+    }
+    if (emailFocused) {
+      return 'focus';
+    }
+    return 'default';
+  };
+
+  const getPasswordState = () => {
+    if (passwordError) {
+      return 'error';
+    }
+    if (passwordFocused) {
+      return 'focus';
+    }
+    return 'default';
+  };
 
   const handleEmailBlur = () => {
     if (username.trim() !== '') {
@@ -63,6 +103,7 @@ export default function LoginPage() {
     setPasswordFocused(false);
   };
 
+  // TODO: 나중에 실제 로그인 로직으로 바꿔주세요!
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -70,40 +111,20 @@ export default function LoginPage() {
       return;
     }
 
-    // 더미 유저 정보와 입력한 값 비교
-    if (username === dummyUser.username && password === dummyUser.password) {
-      dispatch(login(dummyUser));
+    const foundUser = dummyUsers.find(
+      (dummyUser) =>
+        dummyUser.username === username && dummyUser.password === password,
+    );
+
+    if (foundUser) {
+      dispatch(login(foundUser));
       setUsername('');
       setPassword('');
       navigate('/DashBoard');
     } else {
-      // 로그인 실패 처리
       setEmailError('잘못된 이메일입니다.');
       setPasswordError('잘못된 비밀번호입니다.');
     }
-
-    // 실제 API 호출 예시
-    // try {
-    //   // 로그인 API 호출
-    //   const response = await fetch('/api/login', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ username, password }),
-    //   });
-
-    //   if (response.ok) {
-    //     const userData = await response.json();
-    //     dispatch(login(userData));
-    //     navigate('/');
-    //   } else {
-    //     // 로그인 실패 처리
-    //     console.log('로그인 실패');
-    //   }
-    // } catch (error) {
-    //   console.error('로그인 에러:', error);
-    // }
   };
 
   return (
@@ -116,26 +137,19 @@ export default function LoginPage() {
               <InputField
                 multiline={false}
                 size="large"
-                state={
-                  emailError ? 'error' : emailFocused ? 'focus' : 'default'
-                }
+                $state={getEmailState()}
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 onFocus={() => setEmailFocused(true)}
                 onBlur={handleEmailBlur}
                 errorMessage={emailError}
                 placeholder="이메일"
+                autoComplete="off"
               />
               <InputField
                 multiline={false}
                 size="large"
-                state={
-                  passwordError
-                    ? 'error'
-                    : passwordFocused
-                    ? 'focus'
-                    : 'default'
-                }
+                $state={getPasswordState()}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -143,13 +157,14 @@ export default function LoginPage() {
                 onBlur={handlePasswordBlur}
                 errorMessage={passwordError}
                 placeholder="비밀번호"
+                autoComplete="off"
               />
             </InputWrapper>
-            <LoginButton
+            <CustomButton
               size="large"
-              state="enabled"
+              $state="default"
               text="로그인"
-              variant="contained"
+              $variant="login"
               onClick={handleSubmit}
             />
           </FormWrapper>
@@ -157,4 +172,6 @@ export default function LoginPage() {
       </Frame>
     </LoginPageWrapper>
   );
-}
+};
+
+export default LoginPage;

@@ -25,8 +25,10 @@ export const ListItem = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: ${({ dropdown }) => (dropdown ? '40px' : '54px')};
-  padding: ${({ dropdown }) => (dropdown ? '4px 8px' : '4px')};
+  height: ${({ 'data-dropdown': dropdown }) =>
+    dropdown === 'true' ? '40px' : '54px'};
+  padding: ${({ 'data-dropdown': dropdown }) =>
+    dropdown === 'true' ? '4px 8px' : '4px'};
   border-radius: 4px;
   justify-content: flex-start;
   align-items: center;
@@ -39,11 +41,11 @@ export const ListItemText = styled.span`
   color: ${({ selected }) => (selected ? '#412CAB' : '#434343')};
   font-size: 16px;
   font-family: Pretendard;
-  font-weight: ${({ selected, dropdown }) => {
+  font-weight: ${({ selected, 'data-dropdown': dropdown }) => {
     if (selected) {
       return '600';
     }
-    if (dropdown) {
+    if (dropdown === 'true') {
       return '500';
     }
     return '600';

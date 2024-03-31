@@ -1,3 +1,5 @@
-export default function Notices() {
+const Notices = () => {
   return <div>Notices</div>;
-}
+};
+
+export default Notices;

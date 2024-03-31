@@ -21,13 +21,13 @@ export const Input = styled.input`
   padding-right: 16px;
   border-radius: 6px;
   border: 1px solid
-    ${({ state }) =>
-      state === 'error'
+    ${({ $state }) =>
+      $state === 'error'
         ? '#F76659'
-        : state === 'focus'
+        : $state === 'focus'
         ? '#1A1A1A'
         : '#DDDFE3'};
-  color: ${({ state }) => (state === 'error' ? '#F76659' : '#1e2024')};
+  color: ${({ $state }) => ($state === 'error' ? '#F76659' : '#1e2024')};
   font-size: 16px;
   font-family: 'Pretendard';
   font-weight: 400;
@@ -45,6 +45,13 @@ export const Input = styled.input`
     font-weight: 400;
     line-height: 24px;
     word-wrap: break-word;
+  }
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #1e2024 !important;
   }
 `;
 

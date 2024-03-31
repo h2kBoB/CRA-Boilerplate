@@ -1,9 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
+// TODO: 나중에 JWT 관련 이 파일 바꿔 주시요!
 const initialState = {
   isLoggedIn: !!localStorage.getItem('isLoggedIn'),
-  user: null,
+  user: JSON.parse(localStorage.getItem('user')) || null,
 };
 
 const authSlice = createSlice({

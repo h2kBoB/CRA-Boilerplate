@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 
 import { createPrivateRoutes, createPublicRoutes } from './pages';
 
-export default function Router() {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -13,4 +13,6 @@ export default function Router() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
+
+export default Router;

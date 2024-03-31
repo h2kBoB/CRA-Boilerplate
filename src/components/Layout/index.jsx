@@ -7,7 +7,7 @@ import TopBar from '../common/Topbar';
 
 const sidebarWidth = '280px';
 
-function Layout() {
+const Layout = () => {
   return (
     <>
       <TopBar />
@@ -21,7 +21,7 @@ function Layout() {
       </LayoutWrapper>
     </>
   );
-}
+};
 
 const LayoutWrapper = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const ContentWrapper = styled.div`
 
 const MainContent = styled.div`
   flex: 1;
-  padding: 20px;
+  padding: 20px 42px 20px 32px;
   margin-left: ${sidebarWidth};
   background-color: #e9e9e9;
 `;

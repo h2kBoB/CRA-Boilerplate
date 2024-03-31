@@ -18,6 +18,7 @@ export const TopBarWrapper = styled.div`
   padding: 0 30px;
   background-color: #000000;
   height: 64px;
+  z-index: 1000;
 `;
 
 export const LogoWrapper = styled.div`
@@ -42,7 +43,7 @@ export const LogoTextWrapper = styled.img`
 export const ProfileWrapper = styled.div`
   height: 64px;
   padding: 4px;
-  padding-right: 8px;
+  padding-right: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,8 +61,6 @@ export const ProfileInfoWrapper = styled.div`
 `;
 
 export const MemberLabelWrapper = styled.div`
-  padding-left: 4px;
-  padding-right: 4px;
   background: #e9e8ff;
   border-radius: 4px;
   display: flex;
@@ -76,16 +75,4 @@ export const MemberNameText = styled.span`
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-thickness: 1px; /* 밑줄의 두께 */
-`;
-
-export const LogoutButton = styled.button`
-  width: 73px;
-  padding: 4px 2px;
-  border-radius: 4px;
-  border: 1px solid rgba(145, 158, 171, 0.8);
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
-  background-color: transparent;
-  cursor: pointer;
 `;
